@@ -1,8 +1,9 @@
 import React from 'react'
 import { Redirect } from 'react-router-dom'
 import { Route } from 'react-router-dom'
-import Error from '../Error/Error'
-import Login from '../login/Login'
+import Error from '../container/Error/Error'
+import Login from '../container/login/Login'
+import Main from '../container/main/Main'
 
 const FrontAuth = (props) => {
 
@@ -15,16 +16,23 @@ const FrontAuth = (props) => {
   const currentcomponent=routerMap.find((item)=>item.path===pathname)
 //   合法路径  没有登录 不要验证
   if (currentcomponent&& !islogin && !currentcomponent.auth) { 
-    return <Route path={currentcomponent.path} component={currentcomponent.component}></Route>
+    return <Route path={pathname} component={currentcomponent.component}></Route>
   }
   if (islogin) {
     // 登录了判断路径是否合法   不合法404
     if (currentcomponent) {
+      if (currentcomponent.component) {
         return  <Route path={currentcomponent.path} component={currentcomponent.component}></Route>
-    } 
-    else{
+      }
+      if (!currentcomponent.component) {
+          return  <Route path={currentcomponent.path} component={Main}></Route>
+      } 
+      
+    }
+    
+  
         return <Redirect to="/404"></Redirect>
-    } 
+    
   }
   else{
       if (currentcomponent&&currentcomponent.auth) {
@@ -32,7 +40,6 @@ const FrontAuth = (props) => {
       }
       else{
           return  <Redirect to="/404" />;
-
       }
   }
  

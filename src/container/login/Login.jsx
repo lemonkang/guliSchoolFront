@@ -3,13 +3,19 @@ import loginStyle from "./login.module.scss"
 import { Form, Input, Button, Checkbox } from 'antd';
 import { UserOutlined, LockOutlined } from '@ant-design/icons';
  const Login = (props) => { 
+   const {history}=props
      useEffect(() => {
-console.log(loginStyle);
+console.log(history);
     
      }, [])
      const onFinish = (values) => {
         console.log('Received values of form: ', values);
       };
+      // 登录
+      const login=()=>{
+        localStorage.setItem("islogin","adsgsadfg") 
+        history.push("/")
+      }
     return (
         <div  className={loginStyle.while}>
         <div className={loginStyle.body}>
@@ -38,7 +44,7 @@ console.log(loginStyle);
   
 
       <Form.Item>
-        <Button type="primary" htmlType="submit" className="login-form-button">
+        <Button type="primary" htmlType="submit" className="login-form-button" onClick={login}>
           Log in
         </Button>
     
