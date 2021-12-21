@@ -4,9 +4,11 @@ import Error from './Error/Error';
 import Login from './login/Login';
 import Main from './main/Main';
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
-
+import { Provider } from 'react-redux';
+import store from '../redux/store';
  const App = () => {
     return (
+      <Provider store={store}>
         <Router>
           <Switch>
             <div style={{width:"100vw",height:"100vh"}}>
@@ -16,6 +18,7 @@ import { HashRouter as Router, Route, Switch } from "react-router-dom";
           </div>
           </Switch>
         </Router>
+        </Provider>
     )
 }
 

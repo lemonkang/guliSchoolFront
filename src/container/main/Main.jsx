@@ -32,7 +32,7 @@ useEffect(() => {
   // 前往教师模块
   const goTeacher=()=>{
     console.log("教师模块");
-    history.pushState('/teacher')
+    history.push('/teacher')
   }
   const dlick=()=>{
     history.replace("/login")
@@ -65,6 +65,9 @@ useEffect(() => {
           <Content
             className="maincontent"
           >
+            <Switch>
+              <Route path="/teacher" component={Teacher}></Route>
+            </Switch>
         
          
           

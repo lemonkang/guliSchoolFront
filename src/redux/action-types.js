@@ -1,0 +1,1 @@
+export const GetAllTeacher="getallteacher"  //获取所有教师
