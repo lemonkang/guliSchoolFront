@@ -1,5 +1,5 @@
 import React,{useEffect, useState} from 'react'
-import { Layout, Menu } from 'antd'
+import { Layout, Menu, Upload } from 'antd'
 import {
   MenuUnfoldOutlined,
   MenuFoldOutlined,
@@ -11,6 +11,7 @@ import "./main.scss"
 import Teacher from '../teacher/Teacher';
 
 import { Route, Switch,Redirect } from "react-router-dom";
+import UploadCompon from '../upload/UploadCompon';
 
 
 const { Header, Sider, Content } = Layout;
@@ -31,11 +32,16 @@ useEffect(() => {
   };
   // 前往教师模块
   const goTeacher=()=>{
-    console.log("教师模块");
+  
     history.push('/teacher')
   }
+  // 前往登录模块
   const dlick=()=>{
     history.replace("/login")
+  }
+  // 前往文件上传模块
+  const goUpload=()=>{
+    history.push('/upload')
   }
     return (
        <div>
@@ -47,8 +53,8 @@ useEffect(() => {
             <Menu.Item key="1" icon={<UserOutlined />} onClick={goTeacher}>
               教师模块
             </Menu.Item>
-            <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-              nav 2
+            <Menu.Item key="2" icon={<VideoCameraOutlined />} onClick={goUpload}>
+              文件上传
             </Menu.Item>
             <Menu.Item key="3" icon={<UploadOutlined />}>
               nav 3
@@ -67,6 +73,7 @@ useEffect(() => {
           >
             <Switch>
               <Route path="/teacher" component={Teacher}></Route>
+              <Route path="/upload" component={UploadCompon}></Route>
             </Switch>
         
          

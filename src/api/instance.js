@@ -2,7 +2,7 @@ import axios from "axios";
 
 // 配置当前axios实例配置项
 const BASE_OPPTIOS={
-    baseURL:"http://localhost:8001",
+    baseURL:"http://localhost:9001",
     timeout: 10000,
 }
 // 创建实例

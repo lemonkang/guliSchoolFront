@@ -11,7 +11,7 @@ export const getAllTeacher=()=>{
   
     return async dispatch=>{
      const response= await reqFindAll()
-     debugger
+
      dispatch(getAllTeacherAction(response))
 
     }
