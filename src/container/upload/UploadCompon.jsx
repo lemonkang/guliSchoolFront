@@ -11,6 +11,7 @@ export default class UploadCompon extends Component {
             <div>
                 <h3>文件上传</h3>
                 <ImageUpload />
+                <ExcelUpload/>
             </div>
         )
     }

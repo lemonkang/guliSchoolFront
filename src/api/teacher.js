@@ -9,3 +9,5 @@ export const insertEduTeacher=(data)=>POST("/eduservice/teacher/findAll",data)
 // 上传图片
 
 export const requploadimage=(file,config)=>POST("/eduoss/fileoss",file,config)
+// 上传Excel
+export const requploadExcel=(file,config)=>POST("/eduservice/subject/excelupload",file,config)
