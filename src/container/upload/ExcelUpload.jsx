@@ -23,7 +23,7 @@ const ExcelUpload = (props) => {
     return (
         <div>
      <Upload {...propsexcel}>
-    <Button icon={<UploadOutlined />}>Upload</Button>
+    <Button icon={<UploadOutlined />}>Excel上传</Button>
   </Upload>
         </div>
     )
