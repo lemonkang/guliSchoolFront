@@ -1,4 +1,4 @@
-.body{
+.upload{
 
     height: 100%;
     width: 100%;
@@ -6,6 +6,10 @@
         display: flex;
         width: 40%;
         justify-content: space-around;
+    }
+    .body{
+        width: 600px;
+        height: 500px;
     }
 
 }

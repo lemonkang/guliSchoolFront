@@ -13,6 +13,9 @@ import { connect } from 'react-redux'
 
     componentDidMount(){
         this.props.getAllTeacher()
+        console.log('====================================');
+        console.log(this.props);
+        console.log('====================================');
     }
     render() {
         return (
