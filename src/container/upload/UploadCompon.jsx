@@ -20,6 +20,9 @@ import {getAllSubject}from "../../redux/actions"
     }
     componentDidMount(){
         this.props.getAllSubject()
+        console.log('====================================');
+        console.log("测试回退");
+        console.log('====================================');
     }
     treeData=()=>{
         // 所有课程
