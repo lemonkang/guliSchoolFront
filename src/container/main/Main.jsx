@@ -10,8 +10,9 @@ import {
 import "./main.scss"
 import Teacher from '../teacher/Teacher';
 
-import { Route, Switch,Redirect } from "react-router-dom";
+import { Route, Switch,Redirect, Link } from "react-router-dom";
 import UploadCompon from '../upload/UploadCompon';
+import Course from '../course/Course';
 
 
 const { Header, Sider, Content } = Layout;
@@ -57,7 +58,7 @@ useEffect(() => {
               文件上传
             </Menu.Item>
             <Menu.Item key="3" icon={<UploadOutlined />}>
-              nav 3
+             <Link to="/course">课程模块</Link>
             </Menu.Item>
           </Menu>
         </Sider>
@@ -74,6 +75,7 @@ useEffect(() => {
             <Switch>
               <Route path="/teacher" component={Teacher}></Route>
               <Route path="/upload" component={UploadCompon}></Route>
+              <Route path="/course" component={Course}></Route>
             </Switch>
         
          

@@ -11,7 +11,7 @@ import store from '../redux/store';
       <Provider store={store}>
         <Router>
           <Switch>
-            <div style={{width:"100vw",height:"100vh"}}>
+          <div style={{width:"100vw",height:"100vh"}}>
           <Route path="/login" component={Login}></Route>
           <Route path="/" component={Main}></Route>
           <Route path="/404" component={Error}></Route>
