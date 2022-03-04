@@ -10,13 +10,15 @@ import store from '../redux/store';
     return (
       <Provider store={store}>
         <Router>
+        <div style={{width:"100vw",height:"100vh"}}>
           <Switch>
-          <div style={{width:"100vw",height:"100vh"}}>
+         
           <Route path="/login" component={Login}></Route>
           <Route path="/" component={Main}></Route>
           <Route path="/404" component={Error}></Route>
-          </div>
+ 
           </Switch>
+          </div>
         </Router>
         </Provider>
     )

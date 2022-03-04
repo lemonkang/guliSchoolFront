@@ -1,14 +1,21 @@
-import React, { Component, useReducer } from 'react'
+import React, { Component } from 'react'
 import { Table, Tag, Space, Button } from 'antd';
-import { Route,Link,Switch } from 'react-router-dom';
+import { Route,Link } from 'react-router-dom';
 import AddFirstStep from "./AddFirstStep"
+import AddSecondStep from './AddSecondStep';
+import AddThirdStep from './AddThirdStep';
 export default class Course extends Component {
     constructor(props){
         super(props)
+        this.firstStepChild=React.createRef()
+        this.secondStepChild=React.createRef()
+        this.thirdStepChild=React.createRef()
     }
+
     state={
        name:"kang " 
     }
+    
     history=this.props.history
     columns = [
         {
@@ -61,17 +68,39 @@ export default class Course extends Component {
           name: record.name,
         }),
       };
-  render() {
-    
-    let { path,url } =this.props.match
+      // 新增课程
+      addfirststep=()=>{
+        
+        this.firstStepChild.current.showModal()
+        
+      }
+      // 第一步的保存
+      firstStepSave=()=>{
 
+        // 打开第二步的弹出框
+        this.secondStepChild.current.showModal()
+      }
+      // 第二步的保存
+      secondStepSave=()=>{
+        this.thirdStepChild.current.showModal()
+      }
+      //第二步的上一步
+      secondStepPrevious=()=>{
+        // 打开第一步
+        this.firstStepChild.current.showModal()
+      }
+      //第三步的上一步
+      thirdStepPrevious=()=>{
+        // 打开第二步
+        this.secondStepChild.current.showModal()
+      }
+  render() {
+    let { path } =this.props.match
+  
 
     return (
         <div>
-         
-         <div> <Button type='primary'>  <Link to={`${url}/rendering`}>新增课程</Link></Button> </div>
-     
-              
+         <div> <Button type='primary' onClick={this.addfirststep}>  新增课程</Button> </div>  
         <Table
           rowSelection={{
             type: 'checkbox',
@@ -79,13 +108,11 @@ export default class Course extends Component {
           }}
           columns={this.columns}
           dataSource={this.data}
-        />
-    
-                  <Switch>
-                   <Route path={`${path}/:topicId`}>
-                   <AddFirstStep></AddFirstStep>
-                   </Route>
-               </Switch>
+        />   
+          <AddFirstStep ref={this.firstStepChild} firstStepSave={this.firstStepSave}></AddFirstStep>
+          <AddSecondStep ref={this.secondStepChild} secondStepSave={this.secondStepSave} secondStepPrevious={this.secondStepPrevious}></AddSecondStep>
+          <AddThirdStep  ref={this.thirdStepChild} thirdStepChild={this.thirdStepPrevious}></AddThirdStep>
+      
       </div>
     )
   }
