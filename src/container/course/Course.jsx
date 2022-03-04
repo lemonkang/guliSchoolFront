@@ -4,7 +4,9 @@ import { Route,Link } from 'react-router-dom';
 import AddFirstStep from "./AddFirstStep"
 import AddSecondStep from './AddSecondStep';
 import AddThirdStep from './AddThirdStep';
-export default class Course extends Component {
+import { connect } from 'react-redux';
+import {getAllCourseInfo} from "../../redux/actions"
+class Course extends Component {
     constructor(props){
         super(props)
         this.firstStepChild=React.createRef()
@@ -15,49 +17,62 @@ export default class Course extends Component {
     state={
        name:"kang " 
     }
+    // 第一次渲染完成执行
+    componentDidMount(){
+      this.props.getAllCourseInfo()
+      
+    
+    }
+    
     
     history=this.props.history
     columns = [
         {
-          title: 'Name',
-          dataIndex: 'name',
+          title: 'title',
+          dataIndex: 'title',
           render: (text) => <a>{text}</a>,
         },
         {
-          title: 'Age',
-          dataIndex: 'age',
+          title: 'subjectParentId',
+          dataIndex: 'subjectParentId',
         },
         {
-          title: 'Address',
-          dataIndex: 'address',
+          title: 'subjectId',
+          dataIndex: 'subjectId',
         },
+        {
+          title: 'teacherId',
+          dataIndex: 'teacherId',
+        },
+        {
+          title: 'status',
+          dataIndex: 'status',
+        },
+        {
+          title: 'buyCount',
+          dataIndex: 'buyCount',
+        },
+        {
+          title: 'price',
+          dataIndex: 'price',
+        },
+        {
+          title: 'description',
+          dataIndex: 'description',
+        },
+   
       ];
-    data = [
-        {
-          key: '1',
-          name: 'John Brown',
-          age: 32,
-          address: 'New York No. 1 Lake Park',
-        },
-        {
-          key: '2',
-          name: 'Jim Green',
-          age: 42,
-          address: 'London No. 1 Lake Park',
-        },
-        {
-          key: '3',
-          name: 'Joe Black',
-          age: 32,
-          address: 'Sidney No. 1 Lake Park',
-        },
-        {
-          key: '4',
-          name: 'Disabled User',
-          age: 99,
-          address: 'Sidney No. 1 Lake Park',
-        },
-      ]; // rowSelection object indicates the need for row selection
+    data =this.props.Course.allcourse.map((item,index)=>({
+      key: index,
+      title: item.title,
+      subjectParentId: item.subjectParentId,
+      subjectId: item.subjectId,
+      teacherId: item.teacherId,
+      status: item.status,
+      buyCount: item.buyCount,
+      price: item.price,
+      description: item.description
+    }))  // rowSelection object indicates the need for row selection
       rowSelection = {
         onChange: (selectedRowKeys, selectedRows) => {
           console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows);
@@ -96,7 +111,7 @@ export default class Course extends Component {
       }
   render() {
     let { path } =this.props.match
-  
+    console.log( this.props.Course.allcourse);
 
     return (
         <div>
@@ -117,3 +132,5 @@ export default class Course extends Component {
     )
   }
 }
+
+export default connect((state)=>({Course:state.Course}),{getAllCourseInfo})(Course)

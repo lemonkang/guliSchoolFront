@@ -1,5 +1,5 @@
 import {combineReducers} from 'redux'
-import { GetAllTeacher,GetAllSubject } from './action-types';
+import { GetAllTeacher,GetAllSubject,GetAllCourseInfo } from './action-types';
 
 // 教师模块
 const initTeacher={
@@ -16,7 +16,7 @@ switch (action.type) {
       return state
 }
 }
-// 课程模块
+// 课程分类模块
 const initSubject={
     allsubjects:[]
 }
@@ -30,6 +30,22 @@ const Subject=(state=initSubject,action)=>{
            return state
     }
 }
+// 课程信息模块
+const initCourse={
+    allcourse:[]
+}
+const Course=(state=initCourse,action)=>{
+
+    switch (action.type) {
+        case GetAllCourseInfo:
+    
+            
+            return {...state,allcourse:action.data}
+    
+        default:
+            return state
+    }
+}
 export default combineReducers({
-    Teacher,Subject
+    Teacher,Subject,Course
 })
